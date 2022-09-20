@@ -1,0 +1,21 @@
+{
+    "name": "servidor-sencillo",
+    "version": "1.0.0",
+    "description": "un servidor con hapi",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "npx jest",
+        "dev": "nodemon ./src/index.js",
+        "lint": "standard",
+        "lint-fix": "standard --fix"
+    },
+    "dependencies": {
+        "hapi": "^18.1.0"
+    },
+    "author": "JuanLuna",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^2.0.20",
+        "standard": "^17.0.0"
+    }
+}
