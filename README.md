@@ -4,7 +4,6 @@
 > npm i -S hapi
 > npm i -D nodemon standard
 
-
 ## Configuraciones
 --- package.json ---
 scripts: [
@@ -26,5 +25,5 @@ node_modules ...
 > git remote add origin https://github.io/JUANLUNABLANCO...
 
 ##
- 
+
 
