@@ -1,0 +1,109 @@
+<div class="container mt-4">
+    <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">{{question.title}}</h4>
+        <p>{{question.description}}</p>
+        <p class="mb-0">Creada por <strong>{{question.owner.name}}</strong></p>
+        {{#with question.filename}}
+        <div class="card" >
+            <img class="card-img-top" src="/assets/uploads/{{this}}" alt="Card image cap">
+            <div class="card-body">
+                <a href="#" class="btn btn-primary">Ver en Codepen</a>
+            </div>
+        </div>
+        {{/with}}
+    </div>
+    {{!-- <div class="alert alert-success" role="alert">
+        <p>Esta es una repuesta de ejemplo marcada como correcta</p>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    Creada por <strong>Adrian Estrada</strong>
+                </div>
+                <div class="col-sm text-right">
+                    <h3><span class="badge badge-success">Respuesta correcta</span></h3>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    {{#each question.answers as |answer key|}}
+    
+    <div class="alert {{#if answer.correct}}alert-success{{else}}alert-info{{/if}}" role="alert">
+        <p>{{answer.text}}</p>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    Creada por <strong>{{answer.user.name}}</strong>
+                </div>
+                <div class="col-sm text-right">
+                    {{#with user}}
+                        {{!-- ifEquals es un helper de handlebars definido en lib/helpers --}}
+                        {{#ifEquals ../../question.owner.email ../../user.email}}
+                            {{#unless answer.correct}}
+                            <a href="/answer/{{../../../../key}}/{{key}}" class="btn btn-primary" role="button">Elegir Respuesta 
+                            Correcta</a>
+                            {{!-- los ../../../../ son los niveles del contexto dentro de los brakets de handlebars, para obtener la key de arriba necesitamos subir 4 niveles --}}
+                            {{!-- el unless es para que el botón no salga en la respuesta que ya es correcta --}}
+                            {{/unless}}
+                            {{#if answer.correct}}
+                            <h3>
+                                <span class="badge badge-success" >Respuesta Correcta</span>
+                            </h3>
+                            {{/if}}
+                        {{/ifEquals}}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{#if user}}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Responder</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    {{!-- control de errores y success, mensajes desde el servidor --}}
+                    {{#with error}}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Becarefully! </strong> {{this}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {{/with}}
+                    {{#with success}}
+                        <div class="alert alert-success" role="alert">
+                        {{this}}
+                        </div> 
+                    {{/with}}
+                    <form method="POST" action="/answer-question">
+                        <div class="form-group">
+                            <label for="answer">Respuesta</label>
+                            <textarea class="form-control" id="answer" name="answer" placeholder="Ingrese la respuesta" required></textarea>
+                            <input type="hidden" name="id" value="{{key}}" />
+                        </div>
+                        <div class="text-center mt-5">
+                            <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Quieres Responder</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col text-center">
+                    <a href="/login" class="btn btn-primary" role="button">Ingrese para responder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>

@@ -153,3 +153,6 @@ $RECYCLE.BIN/
 .history/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node,Windows,VisualStudioCode
+
+# firebase id access app
+firebase*

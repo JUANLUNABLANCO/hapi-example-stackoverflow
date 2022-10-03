@@ -4,14 +4,25 @@
     "description": "un servidor con hapi",
     "main": "./src/index.js",
     "scripts": {
-        "test": "npx jest",
-        "dev": "nodemon ./src/index.js",
+        "start:test": "npx jest",
+        "start:dev": "nodemon --ext js,hbs ./src/index.js",
+        "start:debug": "set PORT=4000 && node --inspect ./src/index.js",
+        "start:prod": "pm2 ./src/index.js",
         "lint": "standard",
         "lint-fix": "standard --fix"
     },
     "dependencies": {
+        "@hapi/boom": "^10.0.0",
+        "@hapi/good": "^9.0.1",
+        "@hapi/good-console": "^9.0.1",
         "@hapi/hapi": "^20.2.2",
-        "@hapi/inert": "^7.0.0"
+        "@hapi/inert": "^7.0.0",
+        "@hapi/vision": "^7.0.0",
+        "bcrypt": "^5.0.1",
+        "firebase-admin": "^11.0.1",
+        "handlebars": "^4.7.7",
+        "joi": "^17.6.0",
+        "uuid": "^9.0.0"
     },
     "author": "JuanLuna",
     "license": "MIT",
