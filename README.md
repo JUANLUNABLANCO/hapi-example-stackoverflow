@@ -705,7 +705,45 @@ Curso de Node.js con Hapi | Adrián Estrada | realizado con éxito
 ## proyecto de ejemplo
 en la carpeta: E:\Mine\___NEWDEVELOP___\BOOTCAMP 01 EXPERT BACKEND DEVELOPER JS\04 Frameworks Nodejs + Typescript\01 HAPI\02-learn-hapi-master
 hay un proyecto completo de ejemplo para aprender hapi, revisalo
+-----------------------------------------------------------------------------------------------
 
+## Problemas con endings lines in files
+> git config core.autocrlf true  // configura el repo local para que las lineas finales sean por defecto CRLF
+
+> git config --global core.autocrlf true  // lo mismo pero para todos los proyectos de tu máquina
+No hace los cambios a menos que los edites
+
+--- .gitattributes ---
+// # Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+// # Explicitly declare text files you want to always be normalized and converted
+// # to native line endings on checkout.
+*.c text
+*.h text
+
+// # Declare files that will always have CRLF line endings on checkout.
+*.sln text eol=crlf
+
+// # Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+--- ---
+text=auto Git administrará los archivos de la manera que considere óptima. Esta es una buena opción predeterminada.
+
+text eol=crlf Git siempre convertirá los finales de línea a CRLF durante la restauración. Debe usar esto para los archivos que tienen que conservar los finales CRLF, incluso en OSX o Linux.
+
+text eol=lf Git siempre convertirá los finales de línea a LF durante la restauración. Deberías usar esto para los archivos que deben conservar los finales LF, incluso en Windows.
+
+binary Git comprenderá que los archivos especificados no son de texto y no debería intentar cambiarlos. El valor binary también es un alias para -text -diff.
+
+### pasos despues de usar giit config core.autocrlf true
+1. > git add -u .      // grabar todo antes de comenzar los cambios
+2. > git commit -m "Saving files before refreshing line endings"  // eso
+3. > git add --renormalize .  // aplicar los cambios a todos los ficheros
+4. > git status     // ver que ficheros se han reescrito
+5. > git commit -m "Normalize all the line endings" // eso
+6. > git push origin master/main    // subir los cambios
 
 
 
