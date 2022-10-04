@@ -1,11 +1,11 @@
 # HAPI
 ## Instalaciones
-> npmi init
-> npm i -S hapi
-> npm i -D nodemon standard
-> npm i -S inert
-> npm i -S vision
-> npm i -S joi
+$ npmi init
+$ npm i -S hapi
+$ npm i -D nodemon standard
+$ npm i -S inert
+$ npm i -S vision
+$ npm i -S joi
 
 // estas líneas han sido cambiadas con un LF en vez de con un CRLF al final de cada línea
 
@@ -25,33 +25,33 @@ scripts: [
 node_modules ...
 --- ---
 
-> git init
-> git status
-> git add ./
-> git commit -m "Proyecto api rest con HAPI: Mi primer commit"
-> git remote add origin https://github.io/JUANLUNABLANCO/hapi-example-stackoverflow.git
+$ git init
+$ git status
+$ git add ./
+$ git commit -m "Proyecto api rest con HAPI: Mi primer commit"
+$ git remote add origin https://github.io/JUANLUNABLANCO/hapi-example-stackoverflow.git
 
 ## plugins 
 ### inert
 plugin para servir ficheros staticos (idex.html, image.png, index.css, ...) carpeta public
-> npm i -S inert
+$ npm i -S inert
 const Inert = requir4e('inert');
 await Server.register(Inert);
 ### vision
 plugin para renderizar desde el servidor con motor de plantillas handlebars
-> npm install handlebars @hapi/vision --save
+$ npm install handlebars @hapi/vision --save
 const Inert = requir4e('vision');
 await Server.register(Vision);
 
 ### joi
 plugin para validar campos de formularios o datos de una base de datos
-> npm i -S joi
+$ npm i -S joi
 const Joi = requir4e('joi');
 await Server.register(Joi);
 
 ### bcrypt
 enciptar contraseñas para la base de datos
-> npm i -S bcrypt
+$ npm i -S bcrypt
 
 
 ## Firebase
@@ -59,7 +59,7 @@ id del proyecto: stackoverflow-7e0ec
 
 credentials (serviceAccount) to initialize app: ./src/config/firebaseAccess.json
 
-> npm i firebase -S
+$ npm i firebase -S
 
 databaseURL: 'https://stackoverflow-7e0ec-default-rtdb.europe-west1.firebasedatabase.app/'
 
@@ -80,13 +80,13 @@ una vez definida, podemos usarla en nuestras rutas
 ## control de errores
 usaremos @hapi/boom
 
-> npm i -S boom @hapi/boom
+$ npm i -S boom @hapi/boom
 
 const Boom = require('@hapi/boom')
 return Boom.badRequest('mensaje');
 return Boom.unauthorized('mensaje');
 
-saber más > https://hapi.dev/module/boom/
+saber más $ https://hapi.dev/module/boom/
 
 ## enrutamiento avanzado
 
@@ -346,7 +346,7 @@ Server.method('getLast', methods.getLast, {
 
 ## subida de archivos (iamgenes) desde el frontend
 ---
-> npm i uuid -S && npm i -S @hapi/boom 
+$ npm i uuid -S && npm i -S @hapi/boom 
 
 --- question.model.js ---
 async create(info, user, filename) {
@@ -439,7 +439,7 @@ type="file" y accept="image/png", esto habrá que validarlo en el server
 ## Logging o registro de errores y procesos
 tenemos el plugin good de hapi
 
-> npm install -S @hapi/good
+$ npm install -S @hapi/good
 
 await server.register({
   plugin: require('@hapi/good'),
@@ -561,7 +561,7 @@ await Server.register({
  como ya tenemos una authenticacion tipo clasica usuario contraseña en la app,
  hagamos una diferente en la api
 
-> npm i -S hapi-auth-basic
+$ npm i -S hapi-auth-basic
 
 --- api-rest.js ---
 // authenticacion basica
@@ -609,7 +609,7 @@ Implementación
 
 Una vez instalado con 
 
-> npm i crumb -S 
+$ npm i crumb -S 
 
 procedemos a registrarlo en el scrip principal, de la misma manera que hemos hecho antes con good.
 
@@ -680,7 +680,7 @@ set PORT=4000 --> es un comando que funciona en w10 powershell, y en linux
 
 2. otra fórmula sería usar archivos de configuración .env y el paquete 
 
-> npm i --save dot-env
+$ npm i --save dot-env
 
 para usarlo en el index de la siguiente manera:
 
@@ -690,7 +690,7 @@ puedes tener ficheros .env.dev  y .env.prod, no olvides agregarlos al .gitignore
 
 3. Una tercera forma es usar el paquete 
 
->npm i --save cross-env
+$npm i --save cross-env
 
 ...
 "start:debug": "cross-env PORT=4000 node --inspect ./src/index.js",
@@ -710,16 +710,17 @@ hay un proyecto completo de ejemplo para aprender hapi, revisalo
 -----------------------------------------------------------------------------------------------
 
 ## Problemas con endings lines in files
-> git config core.autocrlf true  // configura el repo local para que las lineas finales sean por defecto CRLF, si quieres que sean LF debes colocarlo a false y ser consecuente en el .gitattributes
+$ git config core.autocrlf true  // configura el repo local para que las lineas finales sean por defecto CRLF (windows), si quieres que sean LF debes colocarlo a false y ser consecuente en el .gitattributes, también puede ser auto que es la mejor opción para linux
 
 --- .gitattributes ---
 * text=auto
-* text eol=lf
+* text eol=crlf    // para windows y auto para linux
 --- ---
 
-> git config --global core.autocrlf true  // lo mismo pero para todos los proyectos de tu máquina
+$ git config --global core.autocrlf true  // lo mismo pero para todos los proyectos de tu máquina
 No hace los cambios a menos que los edites
 
+### Ejemplo de .gitattributes
 --- .gitattributes ---
 // # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
@@ -745,12 +746,14 @@ text eol=lf Git siempre convertirá los finales de línea a LF durante la restau
 binary Git comprenderá que los archivos especificados no son de texto y no debería intentar cambiarlos. El valor binary también es un alias para -text -diff.
 
 ### pasos despues de usar giit config core.autocrlf true
-1. > git add -u .      // grabar todo antes de comenzar los cambios
-2. > git commit -m "Saving files before refreshing line endings"  // eso
-3. > git add --renormalize .  // aplicar los cambios a todos los ficheros
-4. > git status     // ver que ficheros se han reescrito
-5. > git commit -m "Normalize all the line endings" // eso
-6. > git push origin master/main    // subir los cambios
+1. $ git add -u .      // grabar todo antes de comenzar los cambios
+2. $ git commit -m "Saving files before refreshing line endings"  // eso
+3. $ git add --renormalize .  // aplicar los cambios a todos los ficheros
+4. $ git status     // ver que ficheros se han reescrito
+5. $ git commit -m "Normalize all the line endings" // eso
+6. $ git push origin master/main    // subir los cambios
+
+
 
 
 
