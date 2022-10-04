@@ -7,8 +7,6 @@
 > npm i -S vision
 > npm i -S joi
 
-// estas líneas han sido cambiadas con un LF en vez de con un CRLF al final de cada línea
-
 
 ## Configuraciones
 --- package.json ---
