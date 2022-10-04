@@ -710,7 +710,12 @@ hay un proyecto completo de ejemplo para aprender hapi, revisalo
 -----------------------------------------------------------------------------------------------
 
 ## Problemas con endings lines in files
-> git config core.autocrlf true  // configura el repo local para que las lineas finales sean por defecto CRLF
+> git config core.autocrlf true  // configura el repo local para que las lineas finales sean por defecto CRLF, si quieres que sean LF debes colocarlo a false y ser consecuente en el .gitattributes
+
+--- .gitattributes ---
+* text=auto
+* text eol=lf
+--- ---
 
 > git config --global core.autocrlf true  // lo mismo pero para todos los proyectos de tu máquina
 No hace los cambios a menos que los edites
