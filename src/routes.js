@@ -52,7 +52,6 @@ module.exports = [{
         method: 'GET',
         path: '/answer/{questionId}/{answerId}',
         handler: question.setAnswerRight
-            // los datos del registro serán enviados a /create-user tipo POST gracias al action del formulario
     },
     {
         method: 'POST',

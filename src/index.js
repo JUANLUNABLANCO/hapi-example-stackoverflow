@@ -1,13 +1,17 @@
 'use strict'
 
-const Hapi = require('@hapi/hapi');
+const Hapi = require('@hapi/hapi'); // framework core
 const Inert = require('@hapi/inert'); // plugin para ofrecer archivos estáticos
-const Vision = require('@hapi/vision');
+const Vision = require('@hapi/vision'); // plugin para servir plantillas renderizar desde el servidor
+const Crumb = require('crumb'); // plugin contra el CSRF @hapi/crumb
+const Blankie = require('blankie'); // plugin contra e XSS, depende de scooter
+const Scooter = require('@hapi/scooter') // plugin que ayuda al anterior
 
-const methods = require('./lib/serverMethods');
+const methods = require('./lib/serverMethods'); // metodos de servidor disponibles en plantillas de hnadlebars y en cualquier parte
 
-const Routes = require('./routes');
-const site = require('./controllers/sites.controller');
+const Routes = require('./routes'); // array de rutas que son objetos
+
+const Site = require('./controllers/sites.controller'); // controlador, necesario para el file not found
 
 const Handlebars = require('./lib/helpers'); // motor de plantillas
 const Path = require('path');
@@ -24,6 +28,33 @@ const Init = async() => {
             }
         })
         // registro de plugin y/o modulos
+
+    // insertará un token en las cabeceras de las peticiones, para hacerlo seguro
+    await Server.register({
+        'plugin': Crumb,
+        'options': {
+            'cookieOptions': {
+                'isSecure': process.env.NODE_ENV === 'production'
+            }
+        }
+    })
+
+    // ###################################################### no funciona bien
+    // await Server.register(
+    //     [Scooter, {
+    //         plugin: Blankie,
+    //         options: { // por defecto es 'self' de todas formas esto no funciona bien
+    //             defaultSrc: `'self'  'unself-inline' https://cdn.jsdelivr.net/`,
+    //             styleSrc: `'self' 'unself-inline' `,
+    //             fontSrc: `'self'  'unself-inline' data: https://fonts.gstatic.com`,
+    //             scriptSrc: `'self'  'unself-inline' https://cdn.jsdelivr.net/ https://code.jquery.com/`,
+    //             generateNonces: false
+    //         }
+    //     }]
+    // )  
+
+    // ###################################################### no funciona bien
+
     await Server.register(Inert);
     await Server.register(Vision);
     await Server.register({
@@ -75,7 +106,7 @@ const Init = async() => {
     });
 
     // interceptamos el envío, por si algun file no se encuentra
-    Server.ext('onPreResponse', site.fileNotFound);
+    Server.ext('onPreResponse', Site.fileNotFound);
 
     // Server.route(...)
     Server.route(Routes);
