@@ -8,7 +8,7 @@
         "start:dev": "nodemon --ext js,hbs ./src/index.js",
         "start:debug": "set PORT=4000 && node -- inspect ./src/index.js",
         "start:prod": "pm2 ./src/index.js",
-        "start": "nodemon ./src/index.js",
+        "start": "node ./src/index.js",
         "lint": "standard",
         "lint-fix": "standard --fix"
     },
