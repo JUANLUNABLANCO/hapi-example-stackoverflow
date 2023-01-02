@@ -1,4 +1,40 @@
-# HAPI
+# HAPI-EXAMPLE-STACK-OVERFLOW
+
+
+
+## INSTRUCTIONS TO INTERACT WITH THE APP
+
+    1. CLONAR PROYECTO
+
+        > git clone https://github.com/JUANLUNABLANCO/hapi-example-stackoverflow.git
+
+    2. INATALACIONES Y DEPENDENCIAS DEL PROYECTO
+
+        > npm install
+
+    3. dirigirse al navegador
+
+        visit(http://localhost:3000)
+
+    4. register user
+
+        rellena formulario con campos válidos, pueden ser ficticios, recuerda el email del usuario y la contraseña
+
+    5. login in/out
+
+        El sistema ya te loguea cuando te registras, pero puedes acceder de nuevo
+    
+    6. puedes hacer preguntas, debes incluir una imagen cualquiera (esto hay que modificarlo, sino existe la imagen que no compruebe la existencia de la misma)
+
+    7. puedes responder tu mismo o crear un nuevo usuario para responder a la pregunta
+
+    8. si eres tu mismo, puedes seleccionar cual es la respuesta mejor de todas
+
+    9. Esto es un simple ejemplo para aprendizaje del framework, se puede mejorar muchas cosas incluso ampliar pero como ejemplo de utilización y para aprender no está mal...
+
+
+// MENSAJE todas las anotaciones realizadas a continuación son méramente para el proceso de aprendizaje, no son aportaciones destinadas a enriquecer el proyecto, es solo para el desarrollador, no las tengas en cuenta, a no ser que quieras aprender a usar este framework
+
 ## Instalaciones
 $ npmi init
 $ npm i -S hapi
@@ -50,6 +86,16 @@ await Server.register(Joi);
 ### bcrypt
 enciptar contraseñas para la base de datos
 $ npm i -S bcrypt
+
+// IMPORTANT you can use a register user you want only you have to put the correct name. email and repeat the password twice
+
+example user: {
+    name: pollo,
+    email: pollo@gmail.com
+    password: 12345678
+    repeat password: 12345678
+}
+
 
 
 ## Firebase
