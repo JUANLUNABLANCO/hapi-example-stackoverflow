@@ -156,3 +156,6 @@ $RECYCLE.BIN/
 
 # firebase id access app
 firebase*
+
+# Local Netlify folder
+.netlify
