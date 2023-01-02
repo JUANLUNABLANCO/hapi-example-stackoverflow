@@ -743,7 +743,7 @@ text eol=lf Git siempre convertirá los finales de línea a LF durante la restau
 
 binary Git comprenderá que los archivos especificados no son de texto y no debería intentar cambiarlos. El valor binary también es un alias para -text -diff.
 
-### pasos despues de usar giit config core.autocrlf true
+### pasos despues de usar git config core.autocrlf true
 1. $ git add -u .      // grabar todo antes de comenzar los cambios
 2. $ git commit -m "Saving files before refreshing line endings"  // eso
 3. $ git add --renormalize .  // aplicar los cambios a todos los ficheros
