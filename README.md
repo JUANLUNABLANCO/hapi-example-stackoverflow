@@ -555,7 +555,7 @@ await Server.register({
     })
 --- ---
 
-## Authentication (startegies)
+## Authentication (strategies)
  como ya tenemos una authenticacion tipo clasica usuario contraseña en la app,
  hagamos una diferente en la api
 
